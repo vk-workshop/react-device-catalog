@@ -1,4 +1,4 @@
-# React Phone Catalog
+# React Device Catalog
 
 ## Project Overview
 
@@ -18,7 +18,7 @@ This project is a responsive phone catalog built with React. Users can browse a 
 
 You can view the live preview of the project here:
 
-[React Phone Catalog Preview](https://vk-workshop.github.io/react_phone-catalog/#/)
+[React Device Catalog Preview](https://vk-workshop.github.io/react_phone-catalog/#/)
 
 ## Mockup
 
