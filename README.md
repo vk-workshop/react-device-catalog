@@ -32,5 +32,5 @@ To run the project locally, follow these steps:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/react_phone-catalog.git
-   cd react_phone-catalog
+   git clone https://github.com/your-username/react-device-catalog.git
+   cd react-device-catalog
