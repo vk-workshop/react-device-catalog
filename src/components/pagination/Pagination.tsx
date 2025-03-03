@@ -4,13 +4,7 @@ import cn from 'classnames';
 import './Pagination.scss';
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '../../services/utils/scrollToTop';
-
-interface PaginationProps {
-  total: number;
-  perPage: number;
-  currentPage: number;
-  onPageChange: (page: number) => void;
-}
+import { PaginationProps } from '../../interfaces/interfaces';
 
 export const Pagination: React.FC<PaginationProps> = React.memo(
   ({ total, perPage, currentPage, onPageChange }) => {
@@ -115,3 +109,5 @@ export const Pagination: React.FC<PaginationProps> = React.memo(
     );
   },
 );
+
+Pagination.displayName = 'Pagination';

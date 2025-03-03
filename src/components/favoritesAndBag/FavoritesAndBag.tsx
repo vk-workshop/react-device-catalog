@@ -4,10 +4,6 @@ import { ProductsContext } from '../../context/ProductsContext';
 
 export const FavoritesAndBag = () => {
   const { favorites, cart } = useContext(ProductsContext);
-  // const location = useLocation();
-
-  // const [searchParams] = useSearchParams();
-  // const location = useLocation();
 
   const totalCount = useMemo(() => {
     return cart.reduce((sum, currentValue) => sum + currentValue.quantity, 0);

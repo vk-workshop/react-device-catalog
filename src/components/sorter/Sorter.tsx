@@ -139,3 +139,5 @@ export const Sorter: React.FC<Props> = React.memo(
     );
   },
 );
+
+Sorter.displayName = 'Sorter';

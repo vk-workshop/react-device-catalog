@@ -17,6 +17,7 @@ type Context = {
   clearCart: () => void;
   isLoading: boolean;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  findProductByName: (name: string) => Product | undefined;
 };
 
 export const ProductsContext = React.createContext<Context>({
@@ -33,6 +34,7 @@ export const ProductsContext = React.createContext<Context>({
   clearCart: () => {},
   setIsLoading: () => {},
   isLoading: false,
+  findProductByName: () => undefined,
 });
 
 type Props = {
@@ -101,6 +103,15 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
     );
   }, []);
 
+  const findProductByName = useCallback(
+    (name: string) => {
+      return allProducts.find(
+        product => product.name.toLowerCase() === name.trim().toLowerCase(),
+      );
+    },
+    [allProducts],
+  );
+
   const contextValue = {
     allProducts,
     favorites,
@@ -115,6 +126,7 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
     clearCart,
     isLoading,
     setIsLoading,
+    findProductByName,
   };
 
   return (

@@ -1,0 +1,517 @@
+
+@import '../../components/styles/mixins';
+@import '../styles/_variables';
+
+.ai-assistant {
+  &__loader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  &__loader-dot {
+    width: 8px;
+    height: 8px;
+    background: $user-bubble;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+    
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+
+  &__product-image-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__product-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: contain;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 2px;
+    background: white;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+
+    .ai-assistant__product-item:hover & {
+      transform: scale(1.05);
+    }
+  }
+
+  &__dialog {
+    &--closing {
+      animation: dialogExit 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  }
+
+  &__list-intro {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__list-outro {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  &__product-list {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  &__product-item {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: scale(0.98);
+      opacity: 0.8;
+    }
+  }
+
+  &__product-content {
+    width: 100%;
+  }
+
+  &__product-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #1f2937;
+    position: relative;
+    padding-left: 0;
+    margin: 0;
+    
+    &::before {
+      content: none;
+    }
+    
+    &::after {
+      content: none;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__plain-message {
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-size: 0.875rem;
+    
+    div {
+      margin: 0.25rem 0;
+    }
+  }
+  
+  &__fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(
+      135deg,
+      $green 0%,
+      $gold 50%,
+      $red 100%
+    );
+    background-size: 300% 300%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: gradientFlow 8s ease infinite;
+    overflow: hidden;
+    
+    &::before {
+      content: none;
+    }
+
+    &-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-text {
+      font-weight: 700;
+      background: linear-gradient(45deg, rgb(41, 118, 122) 0%, rgb(34, 7, 77) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  
+    &-hover-text {
+      position: absolute;
+      left: 100%;
+      opacity: 0;
+      font-weight: 700;
+      background: linear-gradient(45deg, rgb(41, 118, 122) 0%, rgb(34, 7, 77) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+
+    &--closed {
+      &:hover {
+        .ai-assistant__fab-text {
+          transform: translateX(-10px);
+          opacity: 0;
+        }
+        
+        .ai-assistant__fab-hover-text {
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 1;
+          transition-delay: 0.1s;
+        }
+      }
+    }
+  }
+
+  &__dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    animation: dialogEnter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    @include on-tablet {
+      width: 80%;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    backdrop-filter: blur(8px);
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+    &:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: rotate(90deg) scale(1.1);
+    }
+  }
+
+  &__close-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #1f2937;
+    transition: stroke 0.3s ease;
+  }
+
+  &__header {
+    padding: 1.5rem;
+    font-weight: 600;
+    font-size: 1.25rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    mask-image: linear-gradient(
+    to bottom, 
+    transparent 0%,
+    rgba(0,0,0,1) 20px,
+    rgba(0,0,0,1) calc(100% - 20px),
+    transparent 100%
+  );
+  
+  overscroll-behavior: contain;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+  }
+
+  &__message-bubble {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    animation: messageAppear 0.3s ease-out;
+    position: relative;
+    flex-shrink: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    
+    &--user {
+      align-self: flex-end;
+      background: $user-bubble;
+      color: white;
+      animation-name: slideInRight;
+    }
+
+    &--assistant {
+      align-self: flex-start;
+      background: $assistant-bubble;
+      color: #1f2937;
+      animation-name: slideInLeft;
+    }
+  }
+
+  &__role {
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+  }
+
+  &__form {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__input-group {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    font-family: Mont, sans-serif;
+
+    &:focus {
+      outline: none;
+      border-color: $user-bubble;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+  }
+
+  &__send-btn {
+    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(
+      135deg,
+      $green 0%,
+      $gold 50%,
+      $red 100%
+    );
+    background-size: 200% 200%;
+    color: white;
+    box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      background-position: 100% 100%;
+      
+      &::after {
+        transform: translateX(100%);
+      }
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes dialogEnter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes dialogExit {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { 
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+}

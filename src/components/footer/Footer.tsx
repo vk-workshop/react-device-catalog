@@ -33,7 +33,7 @@ export const Footer = () => {
 
         <div className="footer__links">
           <Link
-            to="https://vk-workshop.github.io/react_phone-catalog/"
+            to="https://github.com/vk-workshop/react-device-catalog"
             className="footer__nav-link"
             target="_blank"
           >

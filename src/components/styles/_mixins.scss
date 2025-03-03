@@ -148,14 +148,29 @@
 }
 
 @mixin logo {
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: contain;
-  transition: filter 0.5s;
-  background-image: url(../../../public/img/logo/logo.svg);
+  position: relative;
+  width: 120px;
+  height: 40px;
+  background: $primary-gradient;
+  background-size: 400% 400%;
+  animation: gradientFlow 8s ease infinite;
+  mask: url(../../../public/img/logo/logo.svg) no-repeat center/contain;
+  -webkit-mask: url(../../../public/img/logo/logo.svg) no-repeat center/contain;
+  transition: all 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+  }
 
   &:hover {
-    filter: drop-shadow(1px 1px 14px $green);
+    animation-duration: 4s;
+    transform: scale(1.05);
   }
 }
 
@@ -174,42 +189,6 @@
     padding: 32px 0 80px;
   }
 }
-
-// @mixin button {
-//   border: 1px solid $elements;
-//   cursor: pointer;
-//   width: 32px;
-//   z-index: 2;
-//   font-family: Mont, sans-serif;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   transition: border ease-out 0.5s;
-//   background-color: inherit;
-
-//   &::before {
-//     content: '';
-//     width: 16px;
-//     height: 16px;
-//   }
-
-//   &:hover {
-//     border: 1px solid $primary;
-//   }
-
-//   &.left::before {
-//     background-image: url(../../../public/img/icons/arrow-left-fat.svg);
-//   }
-
-//   &.right::before {
-//     background-image: url(../../../public/img/icons/arrow-right-light.svg);
-//   }
-
-//   &.top::before {
-//     background-image: url(../../../public/img/icons/arrow-top-fat.svg);
-//   }
-// }
-
 
 @mixin anime-btn {
   overflow: hidden;
