@@ -8,6 +8,13 @@ The project is built using **React, TypeScript, Express**, and other modern web 
 
 ---
 
+## 🌐 Live Demo
+
+You can preview the app (if deployed) here:  
+[Live Demo](https://vk-workshop.github.io/react-device-catalog/)
+
+---
+
 ## 🚀 Key Features
 
 - 🛒 **Product Recommendations**  
@@ -99,13 +106,6 @@ This project is a responsive phone catalog built with React. Users can browse a 
     ```
 
 5. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
-
----
-
-## 🌐 Live Demo (optional)
-
-You can preview the app (if deployed) here:  
-[Live Demo](https://vk-workshop.github.io/react-device-catalog/)
 
 ---
 
