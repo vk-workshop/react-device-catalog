@@ -35,6 +35,18 @@ The project is built using **React, TypeScript, Express**, and other modern web 
 - **TypeScript** - Static typing for reliability
 - **Swiper** - Product carousel component
 - **Sass (SCSS)** - Custom styling
+# React Device Catalog
+
+## Project Overview
+
+This project is a responsive phone catalog built with React. Users can browse a list of phones, view details for individual models, add items to their cart, and manage their favorites. The project demonstrates key features of a modern e-commerce application, including dynamic routing, state management, and interaction with mock data.
+
+## Technologies Used
+
+- **React**: For building the user interface.
+- **React Router**: For managing navigation between different pages.
+- **Context API**: For state management across components.
+- **Sass (SCSS)**: For styling and responsive design.
 - **BEM Methodology**: For structuring CSS classes in a modular and maintainable way.
 - **Mobile First**: For designing and developing with a focus on mobile devices first, then scaling up for larger screens.
 
