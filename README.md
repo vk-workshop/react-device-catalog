@@ -37,19 +37,6 @@ You can preview the app (if deployed) here:
 ## 🛠️ Technologies Used
 
 ### Frontend
-- **React** (18.x) - Component-based UI
-- **React Router** - Navigation and routing
-- **TypeScript** - Static typing for reliability
-- **Swiper** - Product carousel component
-- **Sass (SCSS)** - Custom styling
-# React Device Catalog
-
-## Project Overview
-
-This project is a responsive phone catalog built with React. Users can browse a list of phones, view details for individual models, add items to their cart, and manage their favorites. The project demonstrates key features of a modern e-commerce application, including dynamic routing, state management, and interaction with mock data.
-
-## Technologies Used
-
 - **React**: For building the user interface.
 - **React Router**: For managing navigation between different pages.
 - **Context API**: For state management across components.
@@ -66,11 +53,6 @@ This project is a responsive phone catalog built with React. Users can browse a 
 - **ESLint & Prettier** - Code quality and formatting
 - **Concurrently** - Run frontend and backend together
 - **Nodemon** - Hot reload for backend development
-
----
-
-## 📂 Project Structure
-
 
 ---
 
@@ -112,13 +94,6 @@ This project is a responsive phone catalog built with React. Users can browse a 
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 📬 Contact
-
-For any questions, suggestions, or contributions, please contact:  
-📧 kolisnichenko.dev@gmail.com
 
 ---
 
